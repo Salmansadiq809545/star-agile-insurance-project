@@ -71,6 +71,21 @@ resource "aws_security_group" "Proj-secg" {
   name        = "example-security-group"
   description = "Example security group allowing SSH, HTTP, and HTTPS traffic"
   vpc_id = aws_vpc.proj-vpc.id
+  // Ingress rule allowing all traffic
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  // Egress rule allowing all traffic
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   // Inbound rule for SSH (port 22)
   ingress {
     from_port   = 22
