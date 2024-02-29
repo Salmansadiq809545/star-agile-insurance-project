@@ -124,7 +124,7 @@ resource "aws_security_group" "Proj-secg" {
 # Network Group
 resource "aws_network_interface" "proj-nt" {
   subnet_id       = aws_subnet.proj-subnet.id
-  private_ips     = ["10.0.1.10"]
+  private_ips     = ["10.0.1.11"]
   security_groups = [aws_security_group.Proj-secg.id]
 }
 
@@ -133,12 +133,12 @@ resource "aws_network_interface" "proj-nt" {
 resource "aws_eip" "proj-eip" {
   vpc = true
   network_interface = aws_network_interface.proj-nt.id
-  associate_with_private_ip = "10.0.1.10"
+  associate_with_private_ip = "10.0.1.11"
 }
 
 # Creating ec2 Instance
 resource "aws_instance" "prod_server8095" {
-  ami           = "ami-0e670eb768a5fc3d4"
+  ami           = "ami-03f4878755434977f"
   instance_type = "t2.micro"
   availability_zone = "ap-south-1b"
   key_name = "Tom"
@@ -150,8 +150,12 @@ user_data = <<-EOF
 #!/bin/bash
     sudo apt-get update -y
     sudo apt-get update -y
+    sudo apt-get install docker.io -y
+    sudo systemctl enable docker
+    sudo docker run -itd -p 8084:8081 --name C01 salman8095/insuranceproject:v1
+    sudo docker start $(docker ps -aq)
   EOF
   tags = {
-    Name = "Terraform hands-on"
+    Name = "Salman-Prod-Server"
   }
 }
