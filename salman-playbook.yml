@@ -1,26 +1,15 @@
----
-- name: Deploy Docker Container
-  hosts: demo
+- name : Ansible Configuration for deploying Container
+  hosts : all
   become: true
-  tasks:
-    - name: Updating apt
-      apt:
-        update_cache: yes
+  connection : ssh
+  tasks : 
+  - name: updating apt
+    command : sudo apt-get update
 
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
+  - name : Install Docker
+    command : sudo apt-get install -y docker.io
+    become : yes
+    become_user : root
 
-    - name: Start Docker Service
-      service:
-        name: docker
-        state: started
-
-    - name: Deploy Docker Container
-      docker_container:
-        name: C01
-        image: salman8095/insuranceproject:v1
-        state: started
-        published_ports:
-          - "8084:8081"
+  - name: Deploy Docker Container
+    command: docker run -itd -p 8084:8081 --name C01 salman8095/insuranceproject:v1
