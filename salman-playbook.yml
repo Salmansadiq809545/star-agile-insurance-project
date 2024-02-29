@@ -1,6 +1,6 @@
 ---
 - name: Deploy Docker Container
-  hosts: all
+  hosts: demo
   become: true
   tasks:
     - name: Updating apt
