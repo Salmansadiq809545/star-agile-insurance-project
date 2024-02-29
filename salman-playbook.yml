@@ -20,7 +20,7 @@
     - name: Deploy Docker Container
       docker_container:
         name: C01
-        image: salman8095/insuranceproject
+        image: salman8095/insuranceproject:v1
         state: started
         published_ports:
           - "8084:8081"
