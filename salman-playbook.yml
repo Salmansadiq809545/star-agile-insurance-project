@@ -1,0 +1,27 @@
+---
+- name: Deploy Docker Container
+  hosts: all
+  become: true
+  tasks:
+    - name: Updating apt
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Start Docker Service
+      service:
+        name: docker
+        state: started
+
+    - name: Deploy Docker Container
+      docker_container:
+        name: C01
+        image: salman8095/insuranceproject
+        state: started
+        restart_policy: always
+        published_ports:
+          - "8084:8081"
