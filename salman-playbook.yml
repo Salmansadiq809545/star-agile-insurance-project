@@ -22,6 +22,5 @@
         name: C01
         image: salman8095/insuranceproject
         state: started
-        restart_policy: always
         published_ports:
           - "8084:8081"
