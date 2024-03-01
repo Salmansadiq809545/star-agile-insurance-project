@@ -1,3 +1,4 @@
+---
 - name : Installing Container in Hosts
   hosts : all
   become: true
@@ -15,6 +16,7 @@
     command : sudo systemctl start docker
     become : yes
     become_user : root
+    
   - name: stop container
     shell: sudo docker stop C01
     
