@@ -6,12 +6,16 @@
   - name: updating apt
     command : sudo apt-get update
 
-  - name: Install Docker
-  apt:
-    name: docker.io
-    state: present
-  become: yes
-  become_user: root
+  - name: Check if Docker is installed
+      command: "docker --version"
+      register: docker_version_output
+      ignore_errors: true
+
+  - name: Install Docker if not already installed
+      apt:
+        name: docker.io
+        state: present
+      when: docker_version_output.rc != 0
 
   - name: Stop
     command: docker stop C01
