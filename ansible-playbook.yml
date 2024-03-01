@@ -15,6 +15,7 @@
     command : sudo systemctl start docker
     become : yes
     become_user : root
+    
   - name: stop container
     command: docker stop C01
     
