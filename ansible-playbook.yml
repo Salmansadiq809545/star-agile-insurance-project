@@ -15,6 +15,11 @@
     command : sudo systemctl start docker
     become : yes
     become_user : root
-
+  - name: stop container
+    command: docker stop C01
+    
+  - name: remove container
+    command: docker rmi C01
+    
   - name: Deploy Docker Container
     command: docker run -itd -p 8084:8081 --name C01 salman8095/insuranceproject:v1
