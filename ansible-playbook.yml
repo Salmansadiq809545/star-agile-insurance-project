@@ -17,11 +17,7 @@
     become : yes
     become_user : root
     
-  - name: stop container
-    shell: sudo docker stop C01
-    
-  - name: remove container
-    shell: sudo docker rm C01
+  
     
   - name: Deploy Docker Container
     command: docker run -itd -p 8088:8081 --name C01 salman8095/insuranceproject:v1
