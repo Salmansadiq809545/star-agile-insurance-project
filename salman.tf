@@ -124,7 +124,7 @@ resource "aws_security_group" "Proj-secg" {
 # Network Group
 resource "aws_network_interface" "proj-nt" {
   subnet_id       = aws_subnet.proj-subnet.id
-  private_ips     = ["10.0.1.11"]
+  private_ips     = ["10.0.1.10"]
   security_groups = [aws_security_group.Proj-secg.id]
 }
 
@@ -133,7 +133,7 @@ resource "aws_network_interface" "proj-nt" {
 resource "aws_eip" "proj-eip" {
   vpc = true
   network_interface = aws_network_interface.proj-nt.id
-  associate_with_private_ip = "10.0.1.11"
+  associate_with_private_ip = "10.0.1.10"
 }
 
 # Creating ec2 Instance
