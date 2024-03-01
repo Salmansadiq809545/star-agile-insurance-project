@@ -138,7 +138,7 @@ resource "aws_eip" "proj-eip" {
 
 # Creating ec2 Instance
 resource "aws_instance" "prod_server8095" {
-  ami           = "ami-03f4878755434977f"
+  ami           = "ami-03bb6d83c60fc5f7c"
   instance_type = "t2.micro"
   availability_zone = "ap-south-1b"
   key_name = "Tom"
