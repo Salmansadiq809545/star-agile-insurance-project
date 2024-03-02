@@ -152,6 +152,8 @@ user_data = <<-EOF
     sudo apt-get update -y
     sudo apt-get install docker.io -y
     sudo systemctl enable docker
+    sudo docker stop C01
+    sudo docker rm C01
     sudo docker run -itd -p 8084:8081 --name C01 salman8095/insuranceproject:v1
     sudo docker start $(docker ps -aq)
   EOF
