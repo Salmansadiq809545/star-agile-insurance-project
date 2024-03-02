@@ -15,7 +15,7 @@ spec:
         app: insurance
     spec:
       containers:
-      - name: salman
+      - name: C01
         image: salman8095/insuranceproject:v1
         ports:
         - containerPort: 8081
